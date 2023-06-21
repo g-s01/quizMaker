@@ -1,0 +1,14 @@
+:root{
+    --primary: blue;
+    --secondary: pink;
+    --success: green;
+    --info: cyan;
+    --warning: orange;
+    --danger: red;
+    --light: white;
+    --dark: black;
+}
+
+.bg-primary{
+    background-color: var(--primary);
+}
