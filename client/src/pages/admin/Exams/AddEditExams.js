@@ -1,16 +1,29 @@
 import React, { useEffect } from 'react';
 import PageTitle from '../../../components/PageTitle';
 import { Col, Form, message, Row, Select, Table } from "antd";
+import { addExam } from '../../../apicalls/exams';
+import { useNavigate } from 'react-router-dom';
 
 function AddEditExam(){
-
-    const onFinish = (values) => {
-
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        try {
+            let response = await addExam(values);
+            if(response.success) {
+                message.success(response.message);
+                navigate("/admin/exams");
+            } else{
+                message.error(response.message);
+            }
+        } catch (error) {
+            message.error(error.message);
+        }
     }
 
     return (
         <div>
             <PageTitle title="Add exam" />
+            <div className='divider'></div>
             <Form layout = "vertical" onFinish={onFinish}>
                 <Row gutter={[10, 10]}>
                     <Col span = {8}>

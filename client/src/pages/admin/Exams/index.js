@@ -14,6 +14,7 @@ function Exams(){
                 Add exam
             </button>
         </div>
+        <div className='divider'></div>
     </div>
 }
 
