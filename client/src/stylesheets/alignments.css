@@ -18,6 +18,10 @@
     width: 100vw;
 }
 
+.w-100{
+    width: 100%;
+}
+
 .w-75{
     width: 75%;
 }
@@ -116,4 +120,9 @@
 
 .mt-2{
     margin-top: 20px;
+}
+
+h1{
+    margin-bottom: 0px !important;
+    padding-bottom: 0 !important;
 }

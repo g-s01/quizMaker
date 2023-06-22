@@ -1,7 +1,13 @@
 import React from "react";
 import { Form } from "antd";
+import { Link } from "react-router-dom";
 
 function Login(){
+
+    const onFinish = (values) => {
+        console.log(values);
+    };
+
     return(
         <div className="flex justify-center item-center h-screen w-screen">
             <div className="card w-400 p-3">
@@ -10,14 +16,17 @@ function Login(){
                         Login
                     </h1>
                     <div className="divider"></div>
-                    <Form layout = "vertical">
-                        <Form.Item name = 'email' label = 'email'>
+                    <Form layout = "vertical" onFinish={onFinish}>
+                        <Form.Item name = 'email' label = 'Email'>
                             <input type = "text" />
                         </Form.Item>
-                        <Form.Item name = 'password' label = 'password'>
+                        <Form.Item name = 'password' label = 'Password'>
                             <input type = "password" />
                         </Form.Item>
-                        <button type="submit" className="primary-contained-btn mt-2">Login</button>
+                        <div className="flex flex-col gap-2">
+                            <button type="submit" className="primary-contained-btn mt-2 w-100">Login</button>
+                            <Link to={"/register"}>Not a member? Register</Link>
+                        </div>
                     </Form>
                 </div>
             </div>
