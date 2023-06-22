@@ -9,6 +9,7 @@ import "./stylesheets/custom.css";
 import "./stylesheets/text.css";
 import "./stylesheets/theme.css";
 import "./stylesheets/form.css";
+import "./stylesheets/layout.css";
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from "./pages/common/home"
 
@@ -18,9 +19,11 @@ function App() {
       <Routes>
         <Route path = "/login" element = {<Login/>}/>
         <Route path = "/register" element = {<Register/>}/>
-        <Route path = "/" element={<ProtectedRoute>
+        <Route path = "/" element={
+        <ProtectedRoute>
           <Home />
-        </ProtectedRoute>}/>
+        </ProtectedRoute>
+      }/>
       </Routes>
     </BrowserRouter>
   );
