@@ -14,7 +14,7 @@
     justify-content: center;
 }
 
-/* .menu-item {
+.menu-item {
     display: flex;
     align-items: center;
     padding: 8px 30px;
@@ -23,12 +23,12 @@
     transition: all 0.2s ease-in-out;
     gap: 15px;
     color: white !important;
-} */
+}
 
-/* .active-menu-item {
+.active-menu-item {
     border: 2px solid white;
     border-radius: 5px;
-} */
+}
 
 .body {
     width: 100%;

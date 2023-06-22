@@ -1,12 +1,19 @@
-input{
-    height: 40px;
-    padding: 10px 20px;
-    border: 2px solid #ccc;
-    width: 89%;
+input, .ant-select{
+    height: 40px !important;
+    padding: 10px 20px !important;
+    border: 2px solid #ccc !important;
+    width: 89% !important;
+    border-radius: 2px !important;
 }
 
 .ant-form-item{
     margin-bottom: 5px !important;
+}
+
+button {
+    padding: 0px 25px;
+    border-radius: 2px;
+    height: 40px !important;
 }
 
 .primary-contained-btn{
@@ -14,3 +21,9 @@ input{
     color: white;
     padding: 10px 20px;
 }
+
+.primary-outlined-btn {
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
