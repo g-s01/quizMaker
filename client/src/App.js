@@ -9,6 +9,8 @@ import "./stylesheets/custom.css";
 import "./stylesheets/text.css";
 import "./stylesheets/theme.css";
 import "./stylesheets/form.css";
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from "./pages/common/home"
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
       <Routes>
         <Route path = "/login" element = {<Login/>}/>
         <Route path = "/register" element = {<Register/>}/>
+        <Route path = "/" element={<ProtectedRoute>
+          <Home />
+        </ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   );
