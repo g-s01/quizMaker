@@ -1,18 +1,17 @@
-:root{
-    --primary: blue;
-    --secondary: pink;
-    --success: green;
-    --info: cyan;
-    --warning: orange;
-    --danger: red;
-    --light: white;
-    --dark: black;
+:root {
+  --primary: #0F3460;
+  --secondary: #ff5722;
+  --success: #6fbf71;
+  --info: #00bcd4;
+  --warning: #e47943;
+  --danger: #f44336;
+  --light: #f1f1f1;
+  --dark: #212121;
 }
 
 .bg-primary{
-    background-color: var(--primary);
+    background-color: var(--primary) !important;
 }
-
 .bg-white{
     background-color: #fff !important;
 }

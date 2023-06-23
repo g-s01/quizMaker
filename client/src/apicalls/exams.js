@@ -74,17 +74,8 @@ export const addQuestionToExam = async (payload) => {
 
 export const editQuestionById = async (payload) => {
   try {
-    const response = await axiosInstance.post('/api/exams/edit-question-in-exam', payload);
-    return response.data;
-  } catch (error) {
-    return error.response.data;
-  }
-};
-
-export const deleteQuestionbyId = async (payload) => {
-  try {
     const response = await axiosInstance.post(
-      '/api/exams/delete-question-in-exam',
+      "/api/exams/edit-question-in-exam",
       payload
     );
     return response.data;
@@ -92,3 +83,15 @@ export const deleteQuestionbyId = async (payload) => {
     return error.response.data;
   }
 };
+
+export const deleteQuestionById = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      "/api/exams/delete-question-in-exam",
+      payload
+    );
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}
