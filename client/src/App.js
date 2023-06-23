@@ -14,11 +14,15 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from "./pages/common/home";
 import Exams from "./pages/admin/Exams";
 import AddEditExam from './pages/admin/Exams/AddEditExams';
-
+import Loader from './components/Loader';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { loading } = useSelector(state => state.loader);
   return (
-    <BrowserRouter>
+    <>
+      {loading && <Loader />}
+      <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -50,7 +54,8 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

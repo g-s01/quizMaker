@@ -3,11 +3,15 @@ import PageTitle from '../../../components/PageTitle';
 import { Col, Form, message, Row, Select, Table } from "antd";
 import { addExam } from '../../../apicalls/exams';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { ShowLoading, HideLoading } from '../../../redux/loaderSlice';
 
 function AddEditExam(){
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
+            dispatch(ShowLoading());
             let response = await addExam(values);
             if(response.success) {
                 message.success(response.message);
@@ -15,7 +19,9 @@ function AddEditExam(){
             } else{
                 message.error(response.message);
             }
+            dispatch(HideLoading());
         } catch (error) {
+            dispatch(HideLoading());
             message.error(error.message);
         }
     }
@@ -60,4 +66,4 @@ function AddEditExam(){
     )
 }
 
-export default AddEditExam
+export default AddEditExam;
