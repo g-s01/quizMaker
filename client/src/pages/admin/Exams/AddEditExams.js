@@ -17,12 +17,12 @@ function AddEditExam() {
         try {
             dispatch(ShowLoading());
             let response;
-            if(params.id){
+            if (params.id) {
                 response = await editExamById({
                     ...values,
                     examId: params.id
-            });
-            }else{
+                });
+            } else {
                 response = await addExam(values);
             }
             if (response.success) {
@@ -97,17 +97,19 @@ function AddEditExam() {
                                     </Form.Item>
                                 </Col>
                             </Row>
+                            <div className='flex justify-end gap-2'>
+                                <button className='primary-outlined-btn gap' type="button" onClick={() => navigate("/admin/exams")}>Cancel</button>
+                                <button className='primary-contained-btn' type="submit">Save</button>
+                            </div>
                         </TabPane>
                         {params.id && (
-                            <TabPane tab = "Questions" key = "2">
-                                <h1>Qs</h1>
+                            <TabPane tab="Questions" key="2">
+                                <div className='flex justify-end'>
+                                <button className='primary-outlined-btn'>Add Question</button>
+                                </div>
                             </TabPane>
                         )}
                     </Tabs>
-                    <div className='flex justify-end gap-2'>
-                    <button className='primary-outlined-btn gap' type="button" onClick={() => navigate("/admin/exams")}>Cancel</button>
-                        <button className='primary-contained-btn' type="submit">Save</button>
-                    </div>
                 </Form>
             )}
         </div>
