@@ -7,11 +7,14 @@ import { useDispatch } from 'react-redux';
 import { ShowLoading, HideLoading } from '../../../redux/loaderSlice';
 import { getExamById } from '../../../apicalls/exams';
 import TabPane from 'antd/es/tabs/TabPane';
+import AddEditQuestion from './AddEditQuestion';
 
 function AddEditExam() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [examData, setExamData] = React.useState(null);
+    const [showAddEditQuestionModal, setShowAddEditQuestionModal] =
+    React.useState(false);
     const params = useParams();
     const onFinish = async (values) => {
         try {
@@ -105,13 +108,23 @@ function AddEditExam() {
                         {params.id && (
                             <TabPane tab="Questions" key="2">
                                 <div className='flex justify-end'>
-                                <button className='primary-outlined-btn'>Add Question</button>
+                                <button className='primary-outlined-btn'
+                                onClick={() => setShowAddEditQuestionModal(true)}
+                                type = "button">
+                                    Add Question
+                                </button>
                                 </div>
                             </TabPane>
                         )}
                     </Tabs>
                 </Form>
             )}
+            {showAddEditQuestionModal && <AddEditQuestion 
+                setShowAddEditQuestionModal={setShowAddEditQuestionModal}
+                showAddEditQuestionModal = {showAddEditQuestionModal}
+                examId = {params.id}
+                refreshData = {getExamData}
+            />}
         </div>
     )
 }

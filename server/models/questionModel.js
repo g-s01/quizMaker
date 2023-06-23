@@ -5,27 +5,18 @@ const examSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-    category: {
+    },    
+    correctOption: {
       type: String,
       required: true,
     },
-    totalMarks: {
-      type: Number,
+    options: {
+      type: Object,
       required: true,
     },
-    passingMarks: {
-      type: Number,
-      required: true,
-    },
-    questions: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "questions",
-      required: true,
+    exam: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "exams",
     },
   },
   {
@@ -33,5 +24,5 @@ const examSchema = new mongoose.Schema(
   }
 );
 
-const Exam = mongoose.model("exams", examSchema);
-module.exports = Exam;
+const Question = mongoose.model("questions", examSchema);
+module.exports = Question;

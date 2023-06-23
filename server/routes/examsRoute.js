@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Exam = require('../models/examModel');
 const authMiddleware = require('../middlewares/authMiddleware');
+const Question = require('../models/questionModel');
 
 // add exam
 router.post('/add', authMiddleware, async (req, res) => {
