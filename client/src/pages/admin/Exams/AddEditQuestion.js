@@ -1,6 +1,6 @@
 import { Form, Modal, message } from 'antd';
 import React from 'react';
-import { addQuestionToExam } from '../../../apicalls/exams';
+import { addQuestionToExam, editQuestionById } from '../../../apicalls/exams';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../../../redux/loaderSlice';
 
@@ -9,6 +9,9 @@ function AddEditQuestion({
     setShowAddEditQuestionModal,
     refreshData,
     examId,
+    selectedQuestion,
+    setSelectedQuestion,
+
 }) {
     const dispatch = useDispatch();
     const onFinish = async (values) => {
@@ -25,7 +28,16 @@ function AddEditQuestion({
                 },
                 exam: examId,
             }
-            const response = await addQuestionToExam(requiredPayload);
+            let response;
+            if(selectedQuestion){
+                response = await editQuestionById({
+                    ...requiredPayload,
+                    questionId: selectedQuestion._id,
+
+                })
+            } else {
+                response = await addQuestionToExam(requiredPayload);
+            } 
             if (response.success) {
                 message.success(response.message);
                 refreshData();
@@ -33,6 +45,7 @@ function AddEditQuestion({
             } else {
                 message.error(response.message);
             }
+            setSelectedQuestion(null);
             dispatch(HideLoading());
         } catch (error) {
             dispatch(HideLoading());
@@ -41,9 +54,21 @@ function AddEditQuestion({
     }
 
     return (
-        <Modal title='Add Question' visible={showAddEditQuestionModal}
-            footer={false} onCancel={() => setShowAddEditQuestionModal(false)}>
-            <Form onFinish={onFinish} layout='vertical'>
+        <Modal title={selectedQuestion? "Edit Question":"Add Question"} visible={showAddEditQuestionModal}
+            footer={false} onCancel={() => {
+                setShowAddEditQuestionModal(false)
+                setSelectedQuestion(null)
+            }}>
+            <Form onFinish={onFinish} layout='vertical'
+                initialValues={{
+                    name: selectedQuestion?.name,
+                    A: selectedQuestion?.options?.A,
+                    B: selectedQuestion?.options?.B,
+                    C: selectedQuestion?.options?.C,
+                    D: selectedQuestion?.options?.D,
+                    correctOption: selectedQuestion?.correctOption,
+                }}
+            >
                 <Form.Item
                     name="name"
                     label="Question"

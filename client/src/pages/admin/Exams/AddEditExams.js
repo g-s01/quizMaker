@@ -14,7 +14,8 @@ function AddEditExam() {
     const navigate = useNavigate();
     const [examData, setExamData] = React.useState(null);
     const [showAddEditQuestionModal, setShowAddEditQuestionModal] =
-    React.useState(false);
+        React.useState(false);
+    const [selectedQuestion, setSelectedQuestion] = React.useState(null);
     const params = useParams();
     const onFinish = async (values) => {
         try {
@@ -65,6 +66,50 @@ function AddEditExam() {
         }
     }, [])
 
+    const questionColumns = [
+        {
+            title: "Question",
+            dataIndex: "name",
+        },
+        {
+            title: 'Options',
+            dataIndex: 'options',
+            render: (text, record) => {
+                return Object.keys(record.options).map((key) => {
+                    return <div>{key} : {record.options[key]}</div>
+                })
+            }
+        },
+        {
+            title: "Correct Option",
+            dataIndex: "correctOption",
+            render: (text, record) => {
+                return `${record.correctOption} : ${record.options[record.correctOption]}`;
+            },
+        },
+        {
+            title: 'Action',
+            dataIndex: 'action',
+            render: (text, record) => (
+                <div className='flex gap-2'>
+                    <i
+                        className='ri-pencil-line'
+                        onClick={() => {
+                            setSelectedQuestion(record);
+                            setShowAddEditQuestionModal(true);
+                        }}
+                    >
+                    </i>
+                    <i
+                        className='ri-delete-bin-line'
+                        onClick={() => { }}
+                    >
+                    </i>
+                </div>
+            ),
+        },
+    ];
+
     return (
         <div>
             <PageTitle title={params.id ? "Edit Exam" : "Add Exam"} />
@@ -108,22 +153,28 @@ function AddEditExam() {
                         {params.id && (
                             <TabPane tab="Questions" key="2">
                                 <div className='flex justify-end'>
-                                <button className='primary-outlined-btn'
-                                onClick={() => setShowAddEditQuestionModal(true)}
-                                type = "button">
-                                    Add Question
-                                </button>
+                                    <button className='primary-outlined-btn'
+                                        onClick={() => setShowAddEditQuestionModal(true)}
+                                        type="button">
+                                        Add Question
+                                    </button>
                                 </div>
+                                <Table
+                                    columns={questionColumns}
+                                    dataSource={examData?.questions || []}
+                                />
                             </TabPane>
                         )}
                     </Tabs>
                 </Form>
             )}
-            {showAddEditQuestionModal && <AddEditQuestion 
+            {showAddEditQuestionModal && <AddEditQuestion
                 setShowAddEditQuestionModal={setShowAddEditQuestionModal}
-                showAddEditQuestionModal = {showAddEditQuestionModal}
-                examId = {params.id}
-                refreshData = {getExamData}
+                showAddEditQuestionModal={showAddEditQuestionModal}
+                examId={params.id}
+                refreshData={getExamData}
+                selectedQuestion={selectedQuestion}
+                setSelectedQuestion={setSelectedQuestion}
             />}
         </div>
     )
