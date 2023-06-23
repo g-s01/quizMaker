@@ -156,11 +156,7 @@ router.post("/delete-question-in-exam", authMiddleware, async (req, res) => {
             success: true,
         });
     } catch (error) {
-        res.status(500).send({
-            message: error.message,
-            data: error,
-            success: false,
-        });
+        
     }
 });
 

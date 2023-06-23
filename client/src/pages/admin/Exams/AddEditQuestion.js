@@ -11,7 +11,6 @@ function AddEditQuestion({
     examId,
     selectedQuestion,
     setSelectedQuestion,
-
 }) {
     const dispatch = useDispatch();
     const onFinish = async (values) => {
