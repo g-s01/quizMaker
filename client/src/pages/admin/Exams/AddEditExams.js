@@ -104,7 +104,8 @@ function AddEditExam() {
                             </TabPane>
                         )}
                     </Tabs>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-end gap-2'>
+                    <button className='primary-outlined-btn gap' type="button" onClick={() => navigate("/admin/exams")}>Cancel</button>
                         <button className='primary-contained-btn' type="submit">Save</button>
                     </div>
                 </Form>
