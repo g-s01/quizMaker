@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { Button } from "antd";
 import "./stylesheets/theme.css";
 import "./stylesheets/alignments.css";
@@ -6,6 +7,12 @@ import "./stylesheets/custom-components.css";
 import "./stylesheets/form-elements.css";
 import "./stylesheets/layout.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+=======
+// import { Button } from 'antd';
+import './stylesheets/theme.css';
+import './stylesheets/alignments.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+>>>>>>> Stashed changes
 import Login from "./pages/common/Login";
 import Register from "./pages/common/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
